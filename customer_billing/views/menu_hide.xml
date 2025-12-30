@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+        <record id="sale.sale_menu_root" model="ir.ui.menu">
+            <field name="name">Sales Invoice</field>
+        </record>
+
+<!--        <record id="sale.menu_sale_quotations" model="ir.ui.menu">-->
+<!--            <field name="active" eval="False"/>-->
+<!--        </record>-->
+
+<!--        <record id="sale.menu_sale_order" model="ir.ui.menu">-->
+<!--            <field name="active" eval="False"/>-->
+<!--        </record>-->
+
+        <record id="sale.report_sales_team" model="ir.ui.menu">
+            <field name="active" eval="False"/>
+        </record>
+
+        <record id="sale.res_partner_menu" model="ir.ui.menu">
+            <field name="active" eval="False"/>
+        </record>
+
+    <record id="sale.menu_sale_invoicing" model="ir.ui.menu">
+            <field name="active" eval="False"/>
+        </record>
+
+    <record id="sale.res_partner_menu" model="ir.ui.menu">
+            <field name="active" eval="False"/>
+        </record>
+
+    <record id="sale.res_partner_menu" model="ir.ui.menu">
+            <field name="active" eval="False"/>
+        </record>
+
+    <record id="sale.res_partner_menu" model="ir.ui.menu">
+            <field name="active" eval="False"/>
+        </record>
+</odoo>

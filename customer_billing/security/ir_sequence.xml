@@ -1,0 +1,31 @@
+<!--<odoo>-->
+<!--    <record id="seq_product_barcode" model="ir.sequence">-->
+<!--        <field name="name">Product Barcode</field>-->
+<!--        <field name="code">product.barcode</field>-->
+<!--        <field name="prefix">P</field>     &lt;!&ndash; optional &ndash;&gt;-->
+<!--        <field name="padding">6</field>    &lt;!&ndash; barcode will look like P000001, P000002... &ndash;&gt;-->
+<!--    </record>-->
+<!--</odoo>-->
+
+
+<odoo>
+    <data noupdate="1">
+        <record id="seq_product_barcode" model="ir.sequence">
+            <field name="name">Product Barcode</field>
+            <field name="code">product.barcode</field>
+            <field name="padding">6</field>
+            <field name="implementation">standard</field>
+        </record>
+    </data>
+</odoo>
+
+
+<!--<odoo>-->
+<!--    <record id="seq_product_barcode" model="ir.sequence">-->
+<!--        <field name="name">Product Barcode</field>-->
+<!--        <field name="code">product.barcode</field>-->
+<!--        <field name="prefix">P</field>-->
+<!--        <field name="padding">7</field>-->
+<!--&lt;!&ndash;        <field name="number_increment">1</field>&ndash;&gt;-->
+<!--    </record>-->
+<!--</odoo>-->

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_purchase_order_form_inherit_custom1" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.custom</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_ref']" position="attributes">
+                <attribute name="string">Contact Person</attribute>
+            </xpath>
+
+
+            <xpath expr="//group[field[@name='partner_id']]" position="replace">
+                <group colspan="2">
+
+                    <!-- Customer Details -->
+                    <group string="Vendor Information" colspan="1">
+                        <field name="partner_id" required="1" string="M/S. *"/>
+                        <field name="address"/>
+                        <field name="contact_per"/>
+                        <field name="phone_no"/>
+                        <field name="gstin"/>
+                        <field name="pan"/>
+                        <field name="rev_change"/>
+                        <field name="use_same_shipping"/>
+                        <field name="shipping_address" invisible="use_same_shipping == True"
+                               required="use_same_shipping == False"/>
+                        <field name="place_of_sup" string="Place of Supply *" required="1"/>
+                    </group>
+
+                    <!-- Invoice Details -->
+                    <group string="Purchase Invoice Details" colspan="1">
+
+                        <group colspan="2">
+                            <field name="inv_type" string="Purchase Invoice Type"/>
+                            <field name="seq_no" string="Sequence No."/>
+
+                        </group>
+
+                        <group>
+                            <field name="purchase_inv_no" string="Purchase Invoice No. *"/>
+                            <field name="chal_no"/>
+                            <!--                            <field name="po_no"/>-->
+                            <field name="lr_no"/>
+                        </group>
+
+                        <group>
+                            <field name="date" invisible="1"/>
+                            <field name="date" required="1" string="Date *"/>
+                            <field name="chal_date"/>
+                            <!--                            <field name="po_date"/>-->
+                            <field name="eway_no"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="delivery"/>
+                        </group>
+                    </group>
+
+
+                </group>
+            </xpath>
+
+            <xpath expr="//field[@name='date_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='date_planned']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='project_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='receipt_reminder_email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//div[@name='reminder']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+            <xpath expr="//field[@name='order_line']/list/control/create[@name='add_section_control']"
+                   position="replace"/>
+
+            <xpath expr="//field[@name='order_line']/list/control/button[@name='action_add_from_catalog']"
+                   position="replace"/>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='product_id']" position="after">
+                <field name="hsn_code"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="after">
+                <field name="discount"/>
+            </xpath>
+
+            <!--            <xpath expr="//field[@name='order_line']/list/field[@name='product_uom_qty']" position="after">-->
+            <!--                <field name="product_uom_id"/>-->
+            <!--            </xpath>-->
+
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']" position="attributes">
+                <attribute name="string">Price</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/list/field[@name='taxes_id']" position="after">
+                <field name="cess_id"
+                       domain="[('type_tax_use', '=', 'purchase'), ('company_id', 'parent_of', parent.company_id), ('country_id', '=', parent.tax_country_id)]"/>
+            </xpath>
+
+
+            <xpath expr="//group[field[@name='notes']]" position="replace">
+                <group colspan="1">
+                    <group colspan="1" class="order-2 order-lg-0">
+                        <field name="due_date"/>
+                    </group>
+                    <group string="Terms &amp; Conditions" colspan="2" class="order-2 order-rg-0">
+                        <field name="title"/>
+                        <field name="details"/>
+                        <field name="remark"/>
+                    </group>
+                </group>
+            </xpath>
+
+
+
+            <xpath expr="//field[@name='tax_totals']" position="after">
+<!--                <div>-->
+                    <field name="amount_total_words" string="Total in Words"/>
+<!--                </div>-->
+            </xpath>
+
+            <xpath expr="//field[@name='amount_total_words']" position="after">
+                <group string="Payment Type">
+                    <field name="payment_type" widget="radio" options="{'horizontal': True}" string="Payment Type *" />
+                    <field name="payment_rec"/>
+<!--                    <field name="payment_remark"/>-->
+                </group>
+            </xpath>
+
+        <xpath expr="//page[@name='purchase_delivery_invoice']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_product_template_form_custom123" model="ir.ui.view">
+        <field name="name">product.template.custom</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='invoice_policy']" position="after">
+                <field name="hsn_code" string="HSN Code"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

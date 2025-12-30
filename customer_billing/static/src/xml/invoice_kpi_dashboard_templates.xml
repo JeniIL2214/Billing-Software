@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<t t-name="InvoiceKPIDashboardTemplate" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="o_dashboard_container">
+    <h2>Invoice KPI Dashboard</h2>
+    <div class="o_kpi_row" style="display:flex;gap:1rem;margin-bottom:1rem;">
+      <div class="o_kpi_card" style="flex:1;padding:1rem;border-radius:6px;background:#EFF6FF;">
+        <div><small>Total Invoiced</small></div>
+        <div class="kpi-number" data-value="t-esc:kpis['total_amount']" data-kind="amount" t-att-data-value="kpis.get('total_amount')">0</div>
+      </div>
+      <div class="o_kpi_card" style="flex:1;padding:1rem;border-radius:6px;background:#EFF6FF;">
+        <div><small>Average Invoice</small></div>
+        <div class="kpi-number" data-value="t-esc:kpis['avg_invoice']" data-kind="amount" t-att-data-value="kpis.get('avg_invoice')">0</div>
+      </div>
+      <div class="o_kpi_card" style="flex:1;padding:1rem;border-radius:6px;background:#FEF2F2;">
+        <div><small>DSO (days)</small></div>
+        <div class="kpi-number" data-value="t-esc:kpis['dso']" data-kind="count" t-att-data-value="kpis.get('dso')">0</div>
+      </div>
+      <div class="o_kpi_card" style="flex:1;padding:1rem;border-radius:6px;background:#EFF6FF;">
+        <div><small>Unpaid Amount</small></div>
+        <div class="kpi-number" data-value="t-esc:kpis['unpaid_amount']" data-kind="amount" t-att-data-value="kpis.get('unpaid_amount')">0</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem;">
+      <button type="button" class="btn btn-primary" id="open_invoices_action">Open Customer Invoices</button>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <h4>Notes</h4>
+      <ul>
+        <li>All KPIs filter: <code>move_type = 'out_invoice'</code>, and exclude <code>draft</code> & <code>cancel</code>.</li>
+        <li>Click <em>Open Customer Invoices</em> to view the filtered list.</li>
+      </ul>
+    </div>
+  </div>
+</t>

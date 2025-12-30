@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_financial_year_master,access_financial_year_master,model_financial_year_master,base.group_user,1,1,1,0
+access_expensive_details,access_expensive_details,model_expensive_details,base.group_user,1,1,1,0
+
+access_sale_order_qr_wizard,access_sale_order_qr_wizard,model_sale_order_qr_wizard,base.group_user,1,1,1,0
+
+access_sale_challan,access_sale_challan,model_sale_challan,base.group_user,1,1,1,0

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="spreadsheet_dashboard_group_dashboard" model="spreadsheet.dashboard.group">
+        <field name="name">Dashboard</field>
+        <field name="sequence">300</field>
+    </record>
+
+
+    <record id="dashboard_invoicing" model="spreadsheet.dashboard">
+        <field name="name">Dashboard</field>
+        <field name="spreadsheet_binary_data" type="base64" file="customer_billing/data/files/dashboard_det.json"/>
+        <field name="main_data_model_ids" eval="[(4, ref('account.model_account_move'))]"/>
+        <field name="sample_dashboard_file_path">customer_billing/data/files/dashboard_det.json</field>
+        <field name="dashboard_group_id" ref="customer_billing.spreadsheet_dashboard_group_dashboard"/>
+        <field name="group_ids" eval="[Command.link(ref('account.group_account_readonly')), Command.link(ref('account.group_account_invoice'))]"/>
+        <field name="sequence">20</field>
+        <field name="is_published">True</field>
+    </record>
+
+</odoo>

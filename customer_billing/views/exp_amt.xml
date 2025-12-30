@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="expensive_details_list">
+            <field name="name">expensive_details_list</field>
+            <field name="model">expensive.details</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="customer_id" required="1"/>
+                    <field name="product_id" required="1"/>
+                    <field name="description" required="1"/>
+                    <field name="date" required="1"/>
+                    <field name="amount" required="1"/>
+                    <field name="partner_id" required="1"/>
+                    <field name="status" required="1"/>
+                </list>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="expensive_details_form">
+            <field name="name">expensive_details_form</field>
+            <field name="model">expensive.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+
+                                <field name="customer_id" required="1"/>
+                                <field name="product_id" required="1"/>
+                                <field name="description" required="1"/>
+                                <field name="date" required="1"/>
+                                <field name="amount" required="1"/>
+                                <field name="paid_amount" required="1"/>
+                                <field name="partner_id" required="1"/>
+                                <field name="status" required="1"/>
+
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_expensive_details" model="ir.actions.act_window">
+            <field name="name">Expensive Details</field>
+            <field name="res_model">expensive.details</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_action_exp_details" name="Expensive Details" action="action_expensive_details"
+                  sequence="10"/>
+
+
+    </data>
+
+</odoo>

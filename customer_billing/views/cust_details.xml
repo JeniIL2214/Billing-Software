@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_inherit_custom" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.custom</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='company_type']" position="after">
+                <field name="company_type_bill" widget="radio" options="{'horizontal': True}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='company_name']" position="after">
+                <field name="reg_type" widget="radio" options="{'horizontal': True}" string='Registration Type'/>
+            </xpath>
+
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="company_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='vat']" position="before">
+                <field name="pan"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_customer_list_custom" model="ir.ui.view">
+        <field name="name">res.partner.list.custom</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//list" position="replace">-->
+            <!--                <list string="Customers" />-->
+            <!--            </xpath>-->
+
+            <xpath expr="//list" position="replace">
+                <list string="Customers" multi_edit="1">
+                    <field name="company_type_bill" string="Customer Type"/>
+                    <field name="complete_name" string="Name"/>
+                    <field name="reg_type" string="Registered Type"/>
+                    <field name="phone" class="o_force_ltr" optional="show"/>
+                    <field name="mobile" optional="hide"/>
+                    <field name="email" optional="hide"/>
+                    <field name="user_id" optional="hide" widget="many2one_avatar_user"
+                           domain="[('share', '=', False)]"/>
+                    <field name="street" optional="hide"/>
+                    <field name="city" optional="show"/>
+                    <field name="state_id" optional="hide" readonly="0"/>
+                    <field name="country_id" optional="show" readonly="0"/>
+                    <field name="vat" optional="hide" readonly="1"/>
+                    <field name="category_id" optional="hide" widget="many2many_tags"
+                           options="{'color_field': 'color'}"/>
+                    <field name="company_id" groups="base.group_multi_company" readonly="1"/>
+                </list>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

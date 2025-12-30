@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="financial_year_master_list">
+            <field name="name">financial_year_master_list</field>
+            <field name="model">financial.year.master</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name" required="1"/>
+                </list>
+            </field>
+        </record>
+
+<!--        <template id="SwitchFinancialYearMenu" name="Financial Year Switcher">-->
+<!--            <div class="o_financial_year_switcher" style="margin: 0 10px;">-->
+<!--                <select t-model="selected" t-on-change="onChange">-->
+<!--                    <t t-foreach="options" t-as="option">-->
+<!--                        <option t-att-value="option" t-esc="option"/>-->
+<!--                    </t>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </template>-->
+
+        <record model="ir.ui.view" id="financial_year_master_form">
+            <field name="name">financial_year_master_form</field>
+            <field name="model">financial.year.master</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+
+                                <field name="name" required="1"/>
+
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_financial_yr" model="ir.actions.act_window">
+            <field name="name">Financial Years</field>
+            <field name="res_model">financial.year.master</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <menuitem id="menu_action_financial_yr" name="Financial Years" parent="base.menu_users"
+                  action="action_financial_yr"
+                  sequence="20"/>
+
+
+        <!--    <record id="view_res_users_financial_yr" model="ir.ui.view">-->
+        <!--        <field name="name">res.users.form.inherit.fy</field>-->
+        <!--        <field name="model">res.users</field>-->
+        <!--        <field name="inherit_id" ref="base.view_users_form"/>-->
+        <!--        <field name="arch" type="xml">-->
+
+        <!--            <field name="company_id" position="after">-->
+        <!--                <field name="financial_year_id"-->
+        <!--                       options="{'no_create': True, 'no_open': True}"/>-->
+        <!--            </field>-->
+        <!--        </field>-->
+        <!--    </record>-->
+
+        <record id="view_res_users_financial_yr1" model="ir.ui.view">
+            <field name="name">res.users.form.company.inherit.fy1</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='access_rights']/group" position="after">
+                    <group string="Multi Financial Year">
+                        <field name="allowed_financial_year_id" widget="many2many_tags"
+                               options="{'no_create': True,'no_open': True}"/>
+                        <field name="financial_year_id" options="{'no_create': True, 'no_open': True}" required="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!--    <record id="view_res_users_financial_yr2" model="ir.ui.view">-->
+        <!--        <field name="name">res.users.form.inherit.fy2</field>-->
+        <!--        <field name="model">res.users</field>-->
+        <!--        <field name="inherit_id" ref="base.view_users_simple_form"/>-->
+        <!--        <field name="arch" type="xml">-->
+
+        <!--            <field name="company_id" position="after">-->
+        <!--                <field name="allowed_branch_ids" widget="many2many_tags"-->
+        <!--                       options="{'no_create': True,'no_open': True}" domain="[('company_id', '=', company_id)]"/>-->
+        <!--                <field name="branch_id" domain="[('id', 'in', allowed_branch_ids), ('company_id', '=', company_id)]"-->
+        <!--                       options="{'no_create': True, 'no_open': True}"/>-->
+        <!--            </field>-->
+        <!--        </field>-->
+        <!--    </record>-->
+    </data>
+
+</odoo>
